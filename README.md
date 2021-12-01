@@ -2,7 +2,7 @@
 
 These snippets show you how you can read and write to Active Directory group objects DACLs. This also demonstrates using PowerShell to add an account to a AD group.
 
-**Note:** These code snippets (or similar) are used legitimately by many powershell apps and as such will likely not trip endpoint protections. However, if for some reason they do in the future, it will likely be due to signature matching which can be overcome by changing variable names around.
+**Note:** These code snippets (or similar) are used legitimately by many powershell apps and as such will likely not trip endpoint protections. However, if for some reason they do in the future, it will likely be due to signature matching of variable names which can be overcome by changing variable names around.
 
 ### You can read the DACL of an AD group object using:
 
